@@ -1,0 +1,62 @@
+Entities:
+-	Customer:
+	o	Name
+	o	Customer ID (Primary Key)
+	o	Email
+	o	Phone
+	o	Product
+-	Device:
+	o	Device Name
+	o	Owner (Customer)
+	o	Device ID (Primary Key)
+	o	Owner ID (Foreign Key)
+	o	Issue
+-	Service:
+	o	Fault ID (Primary Key)
+	o	Device ID (Foreign Key)
+	o	Date
+	o	Part
+-	Workshop:
+	o	Date
+	o	Class ID (Primary Key)
+	o	Class Name
+	o	Student ID (Foreign Key)
+-	Parts:
+	o	Part name
+	o	Part ID (Primary Key)
+	o	Part Cost
+-	Volunteer Student:
+	o	Student Name
+	o	Student ID (Primary Key)
+	o	Student Email
+	o	Phone Number
+	o	Course
+-	Lecturer:
+	o	Lecturer Name
+	o	Lecturer ID (Primary Key)
+	o	Email
+	o	Number
+Relationships:
+-	Customer (1:N) Device:
+	o	1 customer may own many devices.
+	o	Devices must be owned by a owner.
+-	Device (1:N) Service:
+	o	1 device may be serviced for multiple things.
+	o	Services must occur on a device.
+-	 Service (N:M) Volunteer Student:
+	o	Many students my volunteer for many different services.
+	o	The workshop must be run by a volunteer student.
+-	Service (N:M) Parts:
+	o	 Many services may require many parts.
+	o	Parts may be required for a service.
+-	Volunteer Student (N:M) Parts:
+	o	Many students may have to use replacement parts.
+	o	Replacement parts may be used by a students.
+-	Volunteer Student (1:M) Workshop:
+	o	At least 1 student will run the workshop class and the workshop class must be run by at least 1 student, but a student may run many workshops.
+-	Volunteer Student (N:M) Lecturer:
+	o	Many students may have many lecturers supporting them.
+	o	Many lecturers may support many students.
+-	Lecturer (N:M) Workshop:
+	o	Many lecturers may be involved in many workshops.
+	o Many workshops may have many lecturers involved.

@@ -1,0 +1,70 @@
+Function AuthenticateUser(username, password)
+    hashedPassword = Hash(password)
+    userRecord = Database.GetUserByUsername(username)
+    if userRecord is not null and userRecord.password == hashedPassword then
+        return True
+    else
+        return False
+    end if
+End Function
+
+Function AddNewProduct(name, price, quantity, supplier)
+    product = CreateProductObject(name, price, quantity, supplier)
+    Database.InsertProduct(product)
+End Function
+
+Function UpdateProductInfo(productId, newDetails)
+    product = Database.GetProductById(productId)
+    UpdateProductDetails(product, newDetails)
+    Database.SaveProduct(product)
+End Function
+
+
+Function DeleteProduct(productId)
+    Database.RemoveProductById(productId)
+End Function
+
+
+Function TrackStockLevels()
+    stockList = Database.GetAllStockLevels()
+    return stockList
+End Function
+
+
+Function ReceiveShipments(productId, quantity)
+    currentStock = Database.GetStockLevel(productId)
+    newStockLevel = currentStock + quantity
+    Database.UpdateStockLevel(productId, newStockLevel)
+End Function
+
+
+Function ListProductsForReordering(threshold)
+    lowStockProducts = Database.GetProductsBelowStockLevel(threshold)
+    return lowStockProducts
+End Function
+
+
+Function RecordSalesTransaction(productId, quantity, totalCost)
+    transaction = CreateTransactionObject(productId, quantity, totalCost)
+    Database.SaveTransaction(transaction)
+End Function
+
+
+Function CalculateSalesRevenueAndProfit()
+    salesData = Database.GetSalesData()
+    revenue, profit = CalculateRevenueAndProfit(salesData)
+    return revenue, profit
+End Function
+
+
+Function GenerateReports(reportType, dateRange)
+    reportData = Database.GetReportData(reportType, dateRange)
+    report = GenerateReportFromData(reportData)
+    return report
+End Function
+
+
+Function ViewSalesTransactions(dateRange)
+    transactions = Database.GetTransactionsByDateRange(dateRange)
+    return transactions
+End Function
